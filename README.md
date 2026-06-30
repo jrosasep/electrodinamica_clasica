@@ -1,12 +1,8 @@
-# Electrodinámica 2
+# Electrodinámica Clásica 
 
-Apunte personal de **Electrodinámica 2**, elaborado a partir de notas tomadas en clases y reorganizado en formato LaTeX tipo `book`.
+Apunte de **Electrodinámica Clásica** en desarrollo. El contenido busca integrar los temas estudiados durante el pregrado de **Ciencias Físicas**, especialmente en los cursos de **Electrodinámica 1** y **Electrodinámica 2**.
 
-El objetivo del repositorio es reunir y ordenar el material del curso en una estructura editable por capítulos, manteniendo el énfasis en la formulación físico-matemática de la electrodinámica clásica.
-
-## Estado del proyecto
-
-Apunte en desarrollo. El contenido puede cambiar a medida que se incorporen nuevas secciones, correcciones, ejemplos y comentarios.
+El material se construye a partir de notas tomadas en clases, problemas resueltos en tareas, simulaciones numéricas de sistemas físicos específicos y apuntes elaborados desde textos de referencia, como *Introduction to Electrodynamics* de Griffiths.
 
 ## Contenido actual
 
@@ -67,15 +63,3 @@ También puede compilarse con `pdflatex`:
 pdflatex main.tex
 pdflatex main.tex
 ```
-
-En **Overleaf**, el documento principal debe ser `main.tex`. Si Overleaf intenta compilar `preamble.tex`, se producirá un error porque `preamble.tex` contiene únicamente paquetes, comandos y configuración del documento.
-
-## Asistencia
-
-Este material fue reorganizado y editado con apoyo de IA para tareas de LaTeX, estructuración del documento, revisión local de redacción y ordenamiento de archivos. El contenido final fue revisado y editado por el autor; la responsabilidad por el texto, omisiones y posibles errores remanentes corresponde al autor.
-
-## Autor
-
-**José Rosas**  
-Licenciatura en Ciencias Físicas  
-Universidad de Concepción
