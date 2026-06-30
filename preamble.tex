@@ -1,0 +1,177 @@
+%% !TeX root = main.tex
+% =========================
+%         PAQUETES
+% =========================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{geometry}
+\geometry{left=2.0cm,right=2.0cm,top=2.7cm,bottom=2.8cm,headheight=15pt}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{physics}
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+% \usepackage{microtype} % desactivado para evitar advertencias de compatibilidad en Overleaf
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{subfiles}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{csquotes}
+\usepackage{tensor}
+\usepackage{lastpage}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.pathreplacing,positioning,shapes.geometric}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+
+% Estilos TikZ usados en figuras didácticas del apunte
+\tikzset{
+    eje/.style={-{Latex[length=2.2mm,width=1.5mm]}, thick, gray!70!black},
+    vecazul/.style={-{Latex[length=2.8mm,width=1.8mm]}, very thick, UdeCAzul},
+    vecdorado/.style={-{Latex[length=2.8mm,width=1.8mm]}, very thick, UdeCDorado},
+    vecverde/.style={-{Latex[length=2.8mm,width=1.8mm]}, very thick, green!50!black},
+    frente/.style={fill=UdeCAzul!7, draw=UdeCAzul!75!black, thick},
+    cajadiagrama/.style={rounded corners=2mm, draw=UdeCAzul!45, fill=UdeCAzul!5, inner sep=4pt, align=center}
+}
+
+% =========================
+%       PALETA VISUAL
+% =========================
+\definecolor{UdeCAzul}{HTML}{223C6A}
+\definecolor{UdeCDorado}{HTML}{E69B0A}
+\definecolor{UdeCGris}{HTML}{A0A0A0}
+\definecolor{UdeCGrisClaro}{HTML}{F4F5F7}
+\graphicspath{{./}{../}{chapters/}}
+
+% =========================
+%     CONFIGURACIÓN GENERAL
+% =========================
+\setstretch{1.08}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=UdeCAzul,
+    citecolor=UdeCAzul,
+    urlcolor=UdeCAzul,
+    pdftitle={Electrodinámica 2},
+    pdfauthor={José Rosas Sepúlveda}
+}
+
+
+\titleformat{\chapter}[display]
+  {\Huge\bfseries\color{UdeCAzul}}
+  {\chaptername\ \thechapter}
+  {0.6em}
+  {}
+
+\titleformat{\section}{\Large\bfseries\color{UdeCAzul}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\large\bfseries\color{UdeCAzul}}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{UdeCAzul}}{\thesubsubsection}{0.6em}{}
+
+% =========================
+%        ENCABEZADO
+% =========================
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Electrodinámica Clásica}
+\rhead{J.R.}
+\cfoot{\thepage\ de \pageref{LastPage}}
+
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \lhead{Electrodinámica Clásica}
+    \rhead{J.R.}
+    \cfoot{\thepage\ de \pageref{LastPage}}
+}
+
+% =========================
+%      ENTORNOS TEÓRICOS
+% =========================
+\theoremstyle{definition}
+\newtheorem{definicion}{Definición}[section]
+\newtheorem{ejemplo}[definicion]{Ejemplo}
+\newtheorem{observacion}[definicion]{Observación}
+\newtheorem{notacion}[definicion]{Notación}
+
+\theoremstyle{plain}
+\newtheorem{proposicion}[definicion]{Proposición}
+\newtheorem{teorema}[definicion]{Teorema}
+\newtheorem{lema}[definicion]{Lema}
+\newtheorem{corolario}[definicion]{Corolario}
+
+\numberwithin{equation}{section}
+
+\theoremstyle{remark}
+\newtheorem*{comentario}{Comentario}
+
+% =========================
+%          CAJAS
+% =========================
+\newtcolorbox{cajaidea}{
+    breakable,
+    colback=UdeCGrisClaro,
+    colframe=UdeCAzul,
+    boxrule=0.5pt,
+    arc=2mm,
+    left=2.2mm,right=2.2mm,top=1.5mm,bottom=1.5mm
+}
+
+\newtcolorbox{cuidado}{
+    breakable,
+    colback=UdeCDorado!8,
+    colframe=UdeCDorado,
+    boxrule=0.5pt,
+    arc=2mm,
+    title=\textbf{Cuidado},
+    left=2.2mm,right=2.2mm,top=1.5mm,bottom=1.5mm
+}
+
+% =========================
+%     COMANDOS ÚTILES
+% =========================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+
+\newcommand{\E}{\vec{E}}
+\newcommand{\B}{\vec{B}}
+\newcommand{\D}{\vec{D}}
+\newcommand{\HH}{\vec{H}}
+\newcommand{\J}{\vec{J}}
+\newcommand{\A}{\vec{A}}
+\newcommand{\F}{\vec{F}}
+\newcommand{\rvec}{\vec{r}}
+\newcommand{\uvec}{\vec{u}}
+\newcommand{\p}{\partial}
+\newcommand{\epsz}{\varepsilon_0}
+\newcommand{\muz}{\mu_0}
+\newcommand{\lap}{\nabla^2}
+\newcommand{\rot}{\nabla\times}
+\newcommand{\diver}{\nabla\cdot}
+
+% =========================
+%     DATOS DEL DOCUMENTO
+% =========================
+\newcommand{\TituloApunte}{Electrodinámica 2}
+\newcommand{\SubtituloApunte}{Apunte de estudio basado en clases y en las notas de referencia}
+\newcommand{\AutorApunte}{José Ignacio Rosas Sepúlveda}
+\newcommand{\Institucion}{Universidad de Concepción}
+\newcommand{\Carrera}{Licenciatura en Ciencias Físicas}
+\newcommand{\SemestreCurso}{Primer semestre de 2026}
+\newcommand{\FechaApunte}{13 de abril de 2026}

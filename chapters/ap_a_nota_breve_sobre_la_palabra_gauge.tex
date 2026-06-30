@@ -1,0 +1,18 @@
+% !TeX root = ../main.tex
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\chapter{Nota breve sobre la palabra gauge}
+\label{ap:gauge-teorias}
+
+La palabra \emph{gauge} suele traducirse como \emph{calibre} o \emph{calibración}. En electrodinámica clásica aparece porque los potenciales $(\phi,\vec A)$ contienen más información matemática que los campos físicos $(\E,\B)$. Por eso podemos cambiar los potenciales mediante una función $\chi(\vec x,t)$ sin modificar los campos observables.
+
+Matemáticamente, las transformaciones de gauge electromagnéticas forman un grupo abeliano: si se realizan dos transformaciones sucesivas generadas por $\chi_1$ y $\chi_2$, el resultado equivale a una transformación generada por $\chi_1+\chi_2$. La transformación identidad corresponde a $\chi=0$, y la inversa de una transformación generada por $\chi$ es la generada por $-\chi$.
+
+Desde el punto de vista físico, esta libertad expresa una redundancia de la descripción. En electrodinámica clásica, dicha redundancia no cambia $\E$ ni $\B$. En teorías más avanzadas, como la electrodinámica cuántica o la cromodinámica cuántica, la palabra gauge adquiere un papel aún más profundo: las interacciones se organizan a partir de simetrías locales. En QED el grupo relevante es abeliano, mientras que en QCD el grupo de gauge es no abeliano. No necesitaremos esta estructura aquí, pero es útil recordar que la noción de gauge no es un accidente de notación: es una de las formas centrales en que la física moderna organiza las interacciones.
+
+\begin{cajaidea}
+\textbf{Para este curso.} En electrodinámica clásica basta recordar que un gauge es una elección conveniente de potenciales dentro de una familia de potenciales físicamente equivalentes. Las ecuaciones para $\E$ y $\B$ no cambian; cambia la forma en que resolvemos el problema.
+\end{cajaidea}
+
+\end{document}

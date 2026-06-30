@@ -1,0 +1,415 @@
+% !TeX root = ../main.tex
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\chapter{Potenciales electromagnéticos y gauge}
+
+En electrostática, el campo eléctrico es conservativo, de modo que puede escribirse en términos de un potencial escalar:
+\begin{equation}\label{3.potencial-electrostatico}
+    \E = -\vec\nabla\phi.
+\end{equation}
+De manera análoga, en magnetostática el campo magnético puede expresarse en términos de un potencial vectorial:
+\begin{equation*}
+    \B = \vec\nabla\times\vec A.
+\end{equation*}
+
+La situación cambia en electrodinámica. Ahora los campos dependen, en general, del tiempo, y en particular el campo eléctrico ya no es necesariamente conservativo. En efecto, la ley de Faraday impone
+\begin{equation*}
+    \vec\nabla\times\E = -\frac{\partial \B}{\partial t},
+\end{equation*}
+por lo que, si $\partial \B/\partial t \neq \vec 0$, el rotor de $\E$ no se anula. Por esta razón, en el régimen dinámico no es posible describir al campo eléctrico únicamente mediante un potencial escalar.
+
+Por otra parte, la ecuación homogénea
+\begin{equation*}
+    \vec\nabla\cdot \B = 0
+\end{equation*}
+garantiza que el campo magnético puede escribirse, al menos localmente, como el rotor de un potencial vectorial:
+\begin{equation*}
+    \B = \vec\nabla\times\vec A.
+\end{equation*}
+Sustituyendo esta expresión en la ley de Faraday, se obtiene
+\begin{align*}
+    \vec\nabla\times\E &= -\frac{\partial}{\partial t}\left(\vec\nabla\times\vec A\right) \\
+    &= -\vec\nabla\times\frac{\partial \vec A}{\partial t}.
+\end{align*}
+Luego,
+\begin{equation*}
+    \vec\nabla\times\left(\E + \frac{\partial \vec A}{\partial t}\right) = \vec 0.
+\end{equation*}
+Como un campo irrotacional puede escribirse como el gradiente de un escalar, concluimos que existe un potencial escalar $\phi(\vec x,t)$ tal que
+\begin{equation*}
+    \E + \frac{\partial \vec A}{\partial t} = -\vec\nabla \phi,
+\end{equation*}
+es decir,
+\begin{equation*}
+    \E = -\vec\nabla \phi - \frac{\partial \vec A}{\partial t}.
+\end{equation*}
+
+Así, en electrodinámica los potenciales ya no se asocian por separado a cada campo del modo en que ocurre en los casos estáticos. El potencial escalar y el potencial vectorial aparecen acoplados en la descripción del campo eléctrico, mientras que el campo magnético sigue determinado por el rotor de $\vec A$.
+
+En consecuencia, si $\E(\vec x,t)$ y $\B(\vec x,t)$ satisfacen las ecuaciones homogéneas de Maxwell, entonces existen potenciales $\phi(\vec x,t)$ y $\vec A(\vec x,t)$ tales que
+\begin{align}
+    \E &= -\vec\nabla \phi - \frac{\partial \vec A}{\partial t}, \label{3.campo-electrico-en-potenciales}\\
+    \B &= \vec\nabla\times\vec A.\label{3.campo-magnetico-en-potenciales}
+\end{align}
+La ventaja de introducir estos potenciales es doble: por una parte, las ecuaciones homogéneas de Maxwell quedan automáticamente satisfechas; por otra, el problema dinámico se traslada a determinar $\phi$ y $\vec A$ a partir de las ecuaciones no homogéneas y de una condición de gauge conveniente.
+
+\section*{Comentario físico}
+Desde el punto de vista clásico, los observables locales del campo electromagnético son $\E$ y $\B$. Los potenciales no son directamente observables en este sentido: constituyen una descripción redundante, pero extraordinariamente útil, del campo. Esa redundancia es precisamente lo que da origen a las transformaciones de gauge.
+
+\section*{Transformaciones de gauge}
+
+Una vez introducidos los potenciales, surge inmediatamente una pregunta natural: ¿quedan $\phi$ y $\vec A$ determinados de manera única por los campos $\E$ y $\B$? La respuesta es negativa. Existe una familia entera de potenciales que describe exactamente los mismos campos físicos.
+
+Sea $\chi(\vec x,t)$ una función escalar suficientemente regular. Consideremos la transformación
+\begin{align*}
+    \phi &\rightarrow \phi' = \phi + \frac{\partial \chi}{\partial t}, \\
+    \vec A &\rightarrow \vec A' = \vec A - \vec\nabla\chi.
+\end{align*}
+Entonces, el nuevo campo eléctrico es
+\begin{align*}
+    \E' &= -\vec\nabla \phi' - \frac{\partial \vec A'}{\partial t} \\
+    &= -\vec\nabla\left(\phi + \frac{\partial \chi}{\partial t}\right) - \frac{\partial}{\partial t}\left(\vec A - \vec\nabla\chi\right) \\
+    &= -\vec\nabla\phi - \vec\nabla\frac{\partial \chi}{\partial t} - \frac{\partial \vec A}{\partial t} + \frac{\partial}{\partial t}\left(\vec\nabla\chi\right) \\
+    &= -\vec\nabla\phi - \frac{\partial \vec A}{\partial t} \\
+    &= \E,
+\end{align*}
+porque derivadas espaciales y temporales conmutan. Por lo tanto,
+\begin{equation*}
+    \E' = \E.
+\end{equation*}
+De manera análoga,
+\begin{align*}
+    \B' &= \vec\nabla\times\vec A' \\
+    &= \vec\nabla\times\left(\vec A - \vec\nabla\chi\right) \\
+    &= \vec\nabla\times\vec A - \vec\nabla\times\left(\vec\nabla\chi\right) \\
+    &= \vec\nabla\times\vec A \\
+    &= \B,
+\end{align*}
+pues el rotor de un gradiente es identicamente nulo. En consecuencia,
+\begin{equation*}
+    \B' = \B.
+\end{equation*}
+
+La transformación anterior deja inalterados los campos físicos. Esa es la esencia de la invariancia de gauge: distintos pares $(\phi,\vec A)$ pueden representar exactamente la misma configuración electromagnética.
+
+\section*{Comentario histórico y conceptual}
+La terminología usual distingue diversas elecciones de gauge, como el gauge de Coulomb o el gauge de Lorenz. Conviene recordar aquí una observación histórica clásica: el \emph{gauge de Lorenz} lleva el nombre de Ludvig Lorenz, no de Hendrik Lorentz. Más importante aún, estas elecciones no cambian la física; solamente redistribuyen la información entre $\phi$ y $\vec A$ de una manera que puede resultar más conveniente para el problema en estudio.
+
+En términos prácticos, elegir un gauge es análogo a fijar una calibración de los potenciales. El contenido físico permanece en $\E$ y $\B$, mientras que los potenciales se ajustan para simplificar la estructura matemática del problema.
+
+\section*{Ejemplo: un potencial vectorial puramente radial}
+Consideremos los potenciales
+\begin{equation*}
+    \phi(\vec x,t)=0,
+    \qquad
+    \vec A(\vec x,t)= -\frac{1}{4\pi\varepsilon_0}\frac{qt}{r^2}\hat r.
+\end{equation*}
+Calculemos los campos asociados. Para el campo eléctrico,
+\begin{align*}
+    \E &= -\vec\nabla\phi - \frac{\partial \vec A}{\partial t} \\
+    &= -\vec\nabla(0) - \frac{\partial}{\partial t}\left(-\frac{1}{4\pi\varepsilon_0}\frac{qt}{r^2}\hat r\right) \\
+    &= \frac{1}{4\pi\varepsilon_0}\frac{q}{r^2}\hat r.
+\end{align*}
+Así,
+\begin{equation*}
+    \E = \frac{1}{4\pi\varepsilon_0}\frac{q}{r^2}\hat r.
+\end{equation*}
+Para el campo magnético,
+\begin{align*}
+    \B &= \vec\nabla\times\vec A \\
+    &= -\frac{qt}{4\pi\varepsilon_0}\,\vec\nabla\times\left(\frac{1}{r^2}\hat r\right).
+\end{align*}
+Pero un campo radial puro de la forma $f(r)\hat r$ es irrotacional fuera del origen; en efecto, puede escribirse localmente como gradiente de una función escalar. Por tanto,
+\begin{equation*}
+    \B = \vec 0
+    \qquad (r\neq 0).
+\end{equation*}
+Este ejemplo es instructivo porque muestra que un potencial vectorial no nulo puede coexistir con un campo magnético nulo. La información física no reside en $\vec A$ por sí mismo, sino en sus combinaciones gauge-invariantes, es decir, en los campos.
+
+\section*{El mismo campo con otro gauge}
+Consideremos ahora la función
+\begin{equation*}
+    \chi(\vec x,t)=\frac{1}{4\pi\varepsilon_0}\frac{qt}{r}.
+\end{equation*}
+Entonces
+\begin{equation*}
+    \vec\nabla \chi = \frac{1}{4\pi\varepsilon_0}qt\,\vec\nabla\left(\frac{1}{r}\right)
+    = -\frac{1}{4\pi\varepsilon_0}\frac{qt}{r^2}\hat r,
+\end{equation*}
+de modo que
+\begin{equation*}
+    \vec A' = \vec A - \vec\nabla\chi = \vec 0.
+\end{equation*}
+Además,
+\begin{equation*}
+    \phi' = \phi + \frac{\partial \chi}{\partial t}
+    = 0 + \frac{1}{4\pi\varepsilon_0}\frac{q}{r}.
+\end{equation*}
+Es decir, el mismo campo físico puede describirse mediante el par
+\begin{equation*}
+    \phi' = \frac{1}{4\pi\varepsilon_0}\frac{q}{r},
+    \qquad
+    \vec A' = \vec 0,
+\end{equation*}
+que no es otra cosa que la representación electrostática usual del campo de una carga puntual.
+
+Este resultado resume muy bien el sentido físico del gauge: una descripción puede concentrar la información en el potencial vectorial, mientras otra puede concentrarla en el potencial escalar, sin que los campos observables cambien.
+
+\section*{Gauge y lagrangiano de una partícula cargada}
+Considere ahora una partícula puntual de masa $m$ y carga $q$ moviéndose en campos electromagnéticos externos $\E(\vec x,t)$ y $\B(\vec x,t)$. Su ecuación de movimiento es la fuerza de Lorentz:
+\begin{equation*}
+    m\frac{d^2\vec x}{dt^2} = q\left(\E(\vec x,t) + \dot{\vec x}\times\B(\vec x,t)\right).
+\end{equation*}
+Un lagrangiano que reproduce esta ecuación es
+\begin{equation*}
+    L(\vec x,\dot{\vec x},t)=\frac{1}{2}m\dot{\vec x}^{\,2}-q\phi(\vec x,t)+q\vec A(\vec x,t)\cdot\dot{\vec x}.
+\end{equation*}
+Bajo una transformación de gauge,
+\begin{align*}
+    L' &= \frac{1}{2}m\dot{\vec x}^{\,2} - q\phi' + q\vec A'\cdot\dot{\vec x} \\
+    &= \frac{1}{2}m\dot{\vec x}^{\,2} - q\left(\phi + \frac{\partial \chi}{\partial t}\right) + q\left(\vec A - \vec\nabla\chi\right)\cdot\dot{\vec x} \\
+    &= \left(\frac{1}{2}m\dot{\vec x}^{\,2}-q\phi+q\vec A\cdot\dot{\vec x}\right) - q\left(\frac{\partial \chi}{\partial t}+\vec\nabla\chi\cdot\dot{\vec x}\right).
+\end{align*}
+Pero la derivada total de $q\chi(\vec x,t)$ a lo largo de la trayectoria es
+\begin{equation*}
+    \frac{d}{dt}\left(q\chi(\vec x,t)\right)
+    = q\left(\frac{\partial \chi}{\partial t}+\vec\nabla\chi\cdot\dot{\vec x}\right).
+\end{equation*}
+Por tanto,
+\begin{equation*}
+    L' = L - \frac{d}{dt}\left(q\chi\right).
+\end{equation*}
+El lagrangiano cambia sólo por una derivada total. En mecánica lagrangiana, eso no altera las ecuaciones de Euler--Lagrange; por consiguiente, la dinámica permanece invariante bajo transformaciones de gauge.
+
+\section*{Comentario físico final}
+El papel de los potenciales en la formulación lagrangiana es particularmente ilustrativo. Aunque $\phi$ y $\vec A$ no sean únicos, la ambigüedad asociada al gauge no afecta las ecuaciones de movimiento. Dicho de otro modo: la libertad de gauge no es una arbitrariedad sin contenido, sino una simetría de la descripción. Una misma física puede codificarse mediante distintos potenciales, y esa redundancia queda reflejada tanto en la formulación de Maxwell como en la formulación lagrangiana de la interacción electromagnética.
+
+\section{Ecuaciones de Maxwell en términos de los potenciales}
+
+Conviene cerrar esta sección poniendo en una misma línea las dos ideas que acabamos de obtener. En electrodinámica introducimos los potenciales electromagnéticos mediante
+\begin{align}
+    \E &= -\vec\nabla \phi - \frac{\partial \vec A}{\partial t},
+    \label{eq:potenciales-E}\\
+    \B &= \vec\nabla\times\vec A.
+    \label{eq:potenciales-B}
+\end{align}
+Además, con la convención de signos que usaremos en este apunte, una transformación de gauge se escribe como
+\begin{align}
+    \phi &\longrightarrow \phi' = \phi + \frac{\partial \chi}{\partial t},
+    \label{eq:transformacion-gauge-phi}\\
+    \vec A &\longrightarrow \vec A' = \vec A - \vec\nabla\chi,
+    \label{eq:transformacion-gauge-A}
+\end{align}
+donde $\chi=\chi(\vec x,t)$ es un campo escalar suficientemente regular.
+
+\begin{cajaidea}
+\textbf{Idea central.} Las ecuaciones \eqref{eq:potenciales-E} y \eqref{eq:potenciales-B} definen los campos físicos a partir de los potenciales. Las ecuaciones \eqref{eq:transformacion-gauge-phi} y \eqref{eq:transformacion-gauge-A} muestran que los potenciales no son únicos. Lo observable en electrodinámica clásica son los campos $\E$ y $\B$, no el representante particular $(\phi,\vec A)$ escogido para describirlos.
+\end{cajaidea}
+
+\begin{figure}[ht!]
+\centering
+\begin{tikzpicture}[scale=0.95]
+    \tikzstyle{bloque}=[draw=UdeCAzul, rounded corners=2mm, fill=UdeCGrisClaro, inner sep=6pt, align=center, minimum width=3.25cm, minimum height=1.0cm]
+    \tikzstyle{flecha}=[-{Latex}, thick, color=UdeCAzul]
+
+    \node[bloque] (sources) at (0,0) {fuentes\\$\rho,\,\vec J$};
+    \node[bloque] (pot) at (4.8,0) {potenciales\\$\phi,\,\vec A$};
+    \node[bloque] (fields) at (9.6,0) {campos\\$\E,\,\B$};
+    \node[bloque, fill=UdeCDorado!10, draw=UdeCDorado, minimum width=3.7cm] (gauge) at (4.8,-2.0) {elección de gauge\\Coulomb, Lorenz, etc.};
+
+    \draw[flecha] (sources) -- (pot);
+    \draw[flecha] (pot) -- (fields);
+    \draw[flecha] (gauge) -- (pot);
+    \draw[-{Latex}, thick, color=UdeCDorado] (pot) .. controls (4.8,1.25) and (7.4,1.25) .. node[above,font=\small]{misma física} (fields);
+
+\end{tikzpicture}
+\caption{Lectura operativa de los potenciales: las fuentes determinan los potenciales sólo después de fijar un gauge; los campos físicos se obtienen a partir de los potenciales mediante \eqref{eq:potenciales-E} y \eqref{eq:potenciales-B}.}
+\label{fig:potenciales-gauge-mapa}
+\end{figure}
+
+
+Con esta definición, las ecuaciones homogéneas de Maxwell quedan satisfechas de manera automática. En efecto,
+\begin{equation}
+    \vec\nabla\cdot\B
+    =\vec\nabla\cdot(\vec\nabla\times\vec A)=0,
+    \label{eq:divB-identidad-potencial}
+\end{equation}
+y
+\begin{align}
+    \vec\nabla\times\E
+    &=\vec\nabla\times\left(-\vec\nabla\phi-\frac{\partial\vec A}{\partial t}\right) \\
+    &=-\frac{\partial}{\partial t}(\vec\nabla\times\vec A) \\
+    &=-\frac{\partial\B}{\partial t}.
+    \label{eq:faraday-identidad-potencial}
+\end{align}
+Por tanto, \textbf{el contenido dinámico restante} queda en las ecuaciones no homogéneas de Maxwell.
+
+\subsection*{Ley de Gauss}
+
+Partimos de
+\begin{equation*}
+    \vec\nabla\cdot\E=\frac{\rho}{\varepsilon_0}.
+\end{equation*}
+Sustituyendo \eqref{eq:potenciales-E},
+\begin{align}
+    \vec\nabla\cdot\left(-\vec\nabla\phi-\frac{\partial\vec A}{\partial t}\right)
+    &=\frac{\rho}{\varepsilon_0}.
+\end{align}
+Como la divergencia conmuta con la derivada temporal, se obtiene
+\begin{equation}
+    \boxed{
+    \nabla^2\phi+\frac{\partial}{\partial t}\left(\vec\nabla\cdot\vec A\right)
+    =-\frac{\rho}{\varepsilon_0}}
+    \label{eq:gauss-potenciales}
+\end{equation}
+Esta es la primera ecuación diferencial para los potenciales.
+
+\subsection*{Ley de Ampère--Maxwell}
+
+Ahora usamos
+\begin{equation*}
+    \vec\nabla\times\B=\mu_0\J+\mu_0\varepsilon_0\frac{\partial\E}{\partial t}.
+\end{equation*}
+Sustituyendo \eqref{eq:potenciales-E} y \eqref{eq:potenciales-B},
+\begin{equation}
+    \vec\nabla\times(\vec\nabla\times\vec A)
+    =\mu_0\J+\frac{1}{c^2}\frac{\partial}{\partial t}
+    \left(-\vec\nabla\phi-\frac{\partial\vec A}{\partial t}\right),
+    \label{eq:ampere-potenciales-inicio}
+\end{equation}
+donde usamos $c^{-2}=\mu_0\varepsilon_0$. Con la identidad vectorial
+\begin{equation*}
+    \vec\nabla\times(\vec\nabla\times\vec A)
+    =\vec\nabla(\vec\nabla\cdot\vec A)-\nabla^2\vec A,
+\end{equation*}
+la ecuación se reordena como
+\begin{equation}
+    \boxed{
+    \nabla^2\vec A-\frac{1}{c^2}\frac{\partial^2\vec A}{\partial t^2}
+    -\vec\nabla\left(\vec\nabla\cdot\vec A+\frac{1}{c^2}\frac{\partial\phi}{\partial t}\right)
+    =-\mu_0\J.}
+    \label{eq:ampere-potenciales}
+\end{equation}
+Las ecuaciones \eqref{eq:gauss-potenciales} y \eqref{eq:ampere-potenciales} son las ecuaciones de Maxwell no homogéneas escritas en términos de los potenciales.
+
+\begin{cajaidea}
+\textbf{Lectura matemática.} Tenemos cuatro incógnitas escalares, una en $\phi$ y tres en $\vec A$, y cuatro ecuaciones escalares provenientes de \eqref{eq:gauss-potenciales} y \eqref{eq:ampere-potenciales}. Sin embargo, los potenciales no quedan determinados de manera única, porque la transformación de gauge \eqref{eq:transformacion-gauge-phi}--\eqref{eq:transformacion-gauge-A} deja invariantes los campos $\E$ y $\B$.
+\end{cajaidea}
+
+\begin{cuidado}
+No debe confundirse ``tener cuatro ecuaciones para cuatro incógnitas'' con tener una solución única. La libertad de gauge dice que, si $(\phi,\vec A)$ describe una configuración física, entonces existen infinitos pares $(\phi',\vec A')$ que describen la misma configuración. Por ello, para resolver de manera efectiva se impone una condición adicional sobre los potenciales: eso es lo que llamamos \textbf{fijar un gauge}.
+\end{cuidado}
+
+\section{Elecciones de gauge}
+
+Una elección de gauge es una condición matemática impuesta sobre los potenciales para escoger un representante particular dentro de toda la familia de potenciales físicamente equivalentes. En electrodinámica clásica aparecen dos elecciones especialmente útiles: el \textbf{gauge de Coulomb} y el \textbf{gauge de Lorenz}.
+
+\begin{figure}[ht!]
+\centering
+\begin{tikzpicture}[scale=0.95]
+    \tikzstyle{caja}=[draw=UdeCAzul, rounded corners=2mm, fill=UdeCGrisClaro, inner sep=7pt, align=center, minimum width=5.2cm, minimum height=1.1cm]
+    \tikzstyle{cajaD}=[draw=UdeCDorado, rounded corners=2mm, fill=UdeCDorado!10, inner sep=7pt, align=center, minimum width=5.2cm, minimum height=1.1cm]
+    \node[caja] (pot) at (0,0) {potenciales\\$(\phi,\vec A)$};
+    \node[caja] (potp) at (7,0) {potenciales transformados\\$(\phi',\vec A')$};
+    \node[cajaD] (EB) at (3.5,-2.1) {mismos campos físicos\\$\E' = \E,\quad \B' = \B$};
+
+    \draw[-{Latex}, thick, color=UdeCAzul] (pot) -- node[above]{$\chi(\vec x,t)$} (potp);
+    \draw[-{Latex}, thick, color=UdeCDorado] (pot) -- (EB);
+    \draw[-{Latex}, thick, color=UdeCDorado] (potp) -- (EB);
+\end{tikzpicture}
+\caption{Una transformación de gauge cambia el representante $(\phi,\vec A)$, pero no cambia los campos físicos.}
+\label{fig:gauge-misma-fisica}
+\end{figure}
+
+\subsection*{Gauge de Coulomb}
+
+El gauge de Coulomb se define por
+\begin{equation}
+    \boxed{\vec\nabla\cdot\vec A=0.}
+    \label{eq:gauge-coulomb}
+\end{equation}
+En este caso, la ecuación \eqref{eq:gauss-potenciales} queda
+\begin{equation}
+    \boxed{\nabla^2\phi=-\frac{\rho}{\varepsilon_0}.}
+    \label{eq:poisson-phi-coulomb}
+\end{equation}
+Así, en el gauge de Coulomb el potencial escalar satisface una ecuación de Poisson análoga a la electrostática. Con condiciones de borde adecuadas, su solución puede escribirse como
+\begin{equation}
+    \phi(\vec x,t)=\frac{1}{4\pi\varepsilon_0}
+    \int \frac{\rho(\vec x',t)}{|\vec x-\vec x'|}\,dV'.
+    \label{eq:phi-coulomb-integral}
+\end{equation}
+
+\begin{cajaidea}
+\textbf{Interpretación.} En el gauge de Coulomb, $\phi$ queda determinado instantáneamente por $\rho$. Esto no contradice la causalidad: la información dinámica restante queda codificada en el potencial vectorial $\vec A$ y, finalmente, sólo los campos $\E$ y $\B$ son observables clásicos.
+\end{cajaidea}
+
+\subsection*{Gauge de Lorenz}
+
+El gauge de Lorenz se define por
+\begin{equation}
+    \boxed{\vec\nabla\cdot\vec A+\frac{1}{c^2}\frac{\partial\phi}{\partial t}=0.}
+    \label{eq:gauge-lorenz}
+\end{equation}
+Con esta condición, el término entre paréntesis en \eqref{eq:ampere-potenciales} se anula y las ecuaciones para los potenciales se desacoplan en forma de ecuaciones de onda con fuente:
+\begin{align}
+    \nabla^2\phi-\frac{1}{c^2}\frac{\partial^2\phi}{\partial t^2}
+    &=-\frac{\rho}{\varepsilon_0},
+    \label{eq:onda-phi-lorenz}\\
+    \nabla^2\vec A-\frac{1}{c^2}\frac{\partial^2\vec A}{\partial t^2}
+    &=-\mu_0\J.
+    \label{eq:onda-A-lorenz}
+\end{align}
+
+\begin{cuidado}
+El nombre correcto es \textbf{gauge de Lorenz}, por Ludvig Lorenz, y no ``Lorentz''. En muchos textos aparece la confusión porque Hendrik Lorentz también es una figura central de la electrodinámica y la relatividad, pero la condición \eqref{eq:gauge-lorenz} se asocia históricamente a Lorenz.
+\end{cuidado}
+
+\begin{figure}[ht!]
+\centering
+\begin{tikzpicture}[scale=0.92]
+    \tikzstyle{col}=[draw=UdeCAzul, rounded corners=2mm, fill=UdeCGrisClaro, inner sep=7pt, align=left, text width=6.1cm]
+    \node[col] (coul) at (0,0) {\centering\textbf{Gauge de Coulomb}\\[0.3em]
+    $\vec\nabla\cdot\vec A=0$\\[0.3em]
+    $\nabla^2\phi=-\rho/\varepsilon_0$\\[0.3em]
+    útil cuando se quiere separar con claridad la parte electrostática o longitudinal del problema.};
+    \node[col] (lor) at (7.5,0) {\centering\textbf{Gauge de Lorenz}\\[0.3em]
+    $\vec\nabla\cdot\vec A+c^{-2}\partial_t\phi=0$\\[0.3em]
+    $\nabla^2\phi-c^{-2}\partial_t^2\phi=-\rho/\varepsilon_0$\\
+    $\nabla^2\vec A-c^{-2}\partial_t^2\vec A=-\mu_0\J$\\[0.3em]
+    útil cuando se quiere una forma simétrica y relativista de las ecuaciones.};
+\end{tikzpicture}
+\caption{Comparación operativa entre el gauge de Coulomb y el gauge de Lorenz.}
+\label{fig:coulomb-lorenz}
+\end{figure}
+
+\section{Libertad residual y familia de soluciones}
+
+La transformación de gauge puede usarse para llevar un par arbitrario de potenciales a un gauge conveniente. Por ejemplo, para imponer el gauge de Coulomb queremos
+\begin{equation*}
+    \vec\nabla\cdot\vec A'=0.
+\end{equation*}
+Como $\vec A'=\vec A-\vec\nabla\chi$, se obtiene
+\begin{equation}
+    \nabla^2\chi=\vec\nabla\cdot\vec A.
+    \label{eq:poisson-chi-coulomb}
+\end{equation}
+Esta es una ecuación de Poisson para $\chi$. Bajo condiciones de borde apropiadas, siempre puede escogerse una solución que permita alcanzar el gauge de Coulomb.
+
+De manera análoga, para imponer el gauge de Lorenz, partimos de
+\begin{equation*}
+    \vec\nabla\cdot\vec A'+\frac{1}{c^2}\frac{\partial\phi'}{\partial t}=0.
+\end{equation*}
+Usando \eqref{eq:transformacion-gauge-phi} y \eqref{eq:transformacion-gauge-A}, se obtiene una ecuación de onda para $\chi$:
+\begin{equation}
+    \nabla^2\chi-\frac{1}{c^2}\frac{\partial^2\chi}{\partial t^2}
+    =\vec\nabla\cdot\vec A+\frac{1}{c^2}\frac{\partial\phi}{\partial t}.
+    \label{eq:onda-chi-lorenz}
+\end{equation}
+
+\begin{cajaidea}
+\textbf{Resumen.} Fijar un gauge no cambia la física; cambia la forma matemática en que se distribuye la información entre $\phi$ y $\vec A$. En la práctica, uno escoge el gauge que vuelve más transparente el problema: Coulomb para enfatizar la parte electrostática, Lorenz para obtener ecuaciones de onda desacopladas y una forma más cercana a la formulación relativista.
+\end{cajaidea}
+
+\end{document}

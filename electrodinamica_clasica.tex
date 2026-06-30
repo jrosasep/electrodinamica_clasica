@@ -14,6 +14,7 @@
 \usepackage{physics}
 \usepackage{braket}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{xcolor}
 % \usepackage{microtype} % desactivado para evitar advertencias de compatibilidad en Overleaf
 \usepackage{tikz}
@@ -160,7 +161,7 @@
 % =========================
 %     DATOS DEL DOCUMENTO
 % =========================
-\newcommand{\TituloApunte}{electrodynAmic bullshIt}
+\newcommand{\TituloApunte}{electrodynAmic meowshIt}
 \newcommand{\SubtituloApunte}{Apunte de estudio basado en clases y en las notas de referencia}
 \newcommand{\AutorApunte}{José Rosas Sepúlveda}
 \newcommand{\Institucion}{Universidad de Concepción}
@@ -214,7 +215,7 @@ En particular, la redacción de esta versión busca mantenerse lo más próxima 
 \end{enumerate}
 \end{cajaidea}
 
-En esta primera parte, el material queda concentrado principalmente en dos núcleos: la estructura local de la electrodinámica clásica y la obtención de las ecuaciones de onda electromagnéticas en el vacío.
+En esta primera parte, el material queda concentrado principalmente en la estructura local de la electrodinámica clásica, la obtención de las ecuaciones de onda electromagnéticas en el vacío, el formalismo de potenciales y la construcción causal de los potenciales retardados.
 
 \newpage
 
@@ -2586,6 +2587,21 @@ y, en notación vectorial,
     \vec\pi(\vec x,t):=\varepsilon_0\,\E\times\B.
     \label{eq:momentum-density-diadic}
 \end{equation}
+\begin{cuidado}
+No debe añadirse un signo menos en la definición de la densidad de momentum del campo. Con el vector de Poynting definido como
+\begin{equation*}
+    \vec S=\frac{1}{\mu_0}\,\E\times\B,
+\end{equation*}
+la densidad de momentum electromagnético queda
+\begin{equation*}
+    \vec\pi=\varepsilon_0\,\E\times\B=\frac{1}{c^2}\vec S.
+\end{equation*}
+El signo que puede producir confusión no está en $\vec\pi$, sino en la forma elegida para escribir la ecuación de balance. Con la convención tensorial usada aquí,
+\begin{equation*}
+    \partial_t\pi_i-\partial_jT_{ij}+f_i=0,
+\end{equation*}
+la cantidad $T_{ij}$ se interpreta como tensor de tensiones electromagnéticas. Si se quisiera escribir una ley de conservación estrictamente en la forma $\partial_t\pi_i+\partial_j\Phi_{ij}=\text{fuente}$, entonces el flujo conservativo asociado al momentum del campo sería $\Phi_{ij}=-T_{ij}$. Es decir, cambiar el signo del flujo equivale a cambiar la convención del tensor, no a cambiar el signo físico de $\vec\pi$.
+\end{cuidado}
 Análogamente, el \textbf{tensor de tensiones de Maxwell} queda dado en componentes por
 \begin{equation}
     T_{ij}(\vec x,t)
@@ -2758,10 +2774,10 @@ La última expresión deja en evidencia la estructura física del tensor: una su
 
     \end{tikzpicture}
     \endgroup
-    \caption{Interpretación geométrica del término superficial en la ecuación integral de balance del momentum lineal electromagnético. Para un elemento orientado de superficie \(dS_j=n_j\,dS\) sobre la frontera \(\partial V\), el tensor de tensiones de Maxwell \(T_{ij}\) determina el flujo del componente \(i\) del momentum a través de dicho elemento, dado localmente por \(d\Pi_i^{(\mathrm{surf})}=T_{ij}dS_j\).}
+    \caption{Interpretación geométrica del término superficial en la ecuación integral de balance del momentum lineal electromagnético. Para un elemento orientado de superficie \(dS_j=n_j\,dS\) sobre la frontera \(\partial V\), el tensor de tensiones de Maxwell \(T_{ij}\) determina la acción superficial transmitida por el campo, dada localmente por \(dF_i^{(\mathrm{surf})}=T_{ij}dS_j\). En la forma conservativa del momentum del campo, el flujo saliente correspondiente se escribiría con el signo opuesto, \(-T_{ij}dS_j\).}
     \label{fig:maxwell-stress-surface-flux}
 \end{figure}
-La figura \ref{fig:maxwell-stress-surface-flux} sugiere cómo debe interpretarse el término superficial en la ecuación integral: no como una abstracción puramente algebraica, sino como el flujo del componente \(i\) del momentum lineal del campo a través de cada elemento orientado de la frontera. En este sentido, el tensor \(T_{ij}\) desempeña para el momentum un papel análogo al que desempeña el vector de Poynting para la energía.
+La figura \ref{fig:maxwell-stress-surface-flux} sugiere cómo debe interpretarse el término superficial en la ecuación integral: no como una abstracción puramente algebraica, sino como la acción superficial que el campo transmite a través de cada elemento orientado de la frontera. En este sentido, el tensor \(T_{ij}\) desempeña para el momentum un papel análogo al que desempeña el vector de Poynting para la energía, con una salvedad de signo: en la forma conservativa estricta del momentum del campo, el flujo saliente se identifica con \(-T_{ij}\).
 
 Con estas definiciones, \eqref{eq:momentum-balance-precompact} se compacta en notación indicial como
 \begin{equation}
@@ -2773,7 +2789,7 @@ y, usando la convención diádica fijada al comienzo de esta subsección, la mis
     \partial_t\vec\pi-\nabla\cdot T+\vec f=\vec 0.
     \label{eq:momentum-local-balance-diadic}
 \end{equation}
-Aquí el significado geométrico de cada término es completamente transparente: $\partial_t\vec\pi$ es la variación temporal de la densidad de momentum del campo, $\nabla\cdot T$ es la divergencia del flujo tensorial de momentum y $\vec f$ es la densidad de fuerza ejercida sobre la materia.
+Aquí el significado geométrico de cada término es completamente transparente: $\partial_t\vec\pi$ es la variación temporal de la densidad de momentum del campo, $\nabla\cdot T$ es la divergencia del tensor de tensiones electromagnéticas y $\vec f$ es la densidad de fuerza ejercida sobre la materia. Equivalentemente, si se escribe la ecuación como una ley de balance con flujo saliente del momentum del campo, dicho flujo corresponde a $-T$.
 
 En notación vectorial, la densidad de momentum del campo es
 \begin{align}
@@ -2846,7 +2862,7 @@ La interpretación de \eqref{eq:momentum-integral-balance} es la siguiente:
 
 \begin{itemize}
     \item el término $\displaystyle \frac{d}{dt}\int_V\pi_i\,dV$ representa la rapidez de cambio del \textbf{momentum lineal electromagnético} contenido en el volumen;
-    \item el término $\displaystyle \oint_{\partial V}T_{ij}\,dS_j$ representa la \textbf{acción mecánica transmitida por el campo a través de la superficie frontera}, es decir, la fuerza superficial neta asociada a las tensiones electromagnéticas;
+    \item el término $\displaystyle \oint_{\partial V}T_{ij}\,dS_j$ representa la \textbf{acción mecánica transmitida por el campo a través de la superficie frontera}, es decir, la fuerza superficial neta asociada a las tensiones electromagnéticas. Si se interpreta como flujo saliente del momentum del campo, aparece con signo opuesto;
     \item el término $\displaystyle \int_V f_i\,dV$ representa la \textbf{fuerza total de Lorentz} ejercida por el campo sobre las cargas contenidas en $V$.
 \end{itemize}
 
@@ -2907,7 +2923,7 @@ vemos que ambas comparten la misma arquitectura conceptual:
     \item y un \textbf{término de interacción con la materia}.
 \end{itemize}
 
-En el caso energético, la cantidad transportada es la energía electromagnética y el flujo está dado por el vector de Poynting. En el caso mecánico, la cantidad transportada es el momentum lineal del campo y el flujo asociado está codificado en el tensor de tensiones de Maxwell.
+En el caso energético, la cantidad transportada es la energía electromagnética y el flujo está dado por el vector de Poynting. En el caso mecánico, la cantidad transportada es el momentum lineal del campo y la información sobre su transporte y su acción superficial está codificada en el tensor de tensiones de Maxwell. La convención usada en este apunte deja esa información en $T_{ij}$ y escribe el flujo conservativo saliente como $-T_{ij}$.
 
 \newpage
 
@@ -3321,6 +3337,409 @@ Usando \eqref{eq:transformacion-gauge-phi} y \eqref{eq:transformacion-gauge-A}, 
 \begin{cajaidea}
 \textbf{Resumen.} Fijar un gauge no cambia la física; cambia la forma matemática en que se distribuye la información entre $\phi$ y $\vec A$. En la práctica, uno escoge el gauge que vuelve más transparente el problema: Coulomb para enfatizar la parte electrostática, Lorenz para obtener ecuaciones de onda desacopladas y una forma más cercana a la formulación relativista.
 \end{cajaidea}
+
+\section{Potenciales retardados y fuentes en movimiento}
+\label{sec:potenciales-retardados-fuentes-movimiento}
+
+En el gauge de Lorenz, las ecuaciones de Maxwell inhomogéneas se transforman en ecuaciones de onda inhomogéneas para los potenciales. Esta observación es el punto de partida natural para discutir \textbf{potenciales retardados}: si las fuentes cambian en el tiempo, el potencial observado en un punto no puede depender de la fuente ``en el mismo instante'' de manera instantánea, sino de la fuente evaluada en el tiempo compatible con la propagación a rapidez $c$.
+
+En esta sección seguimos la estructura del capítulo de radiación de las notas del curso, pero la incorporamos en la notación y el estilo del presente apunte. La idea física central es sencilla: resolver las ecuaciones de onda con fuente equivale a reconstruir el campo en un evento $(ct,\vec x)$ a partir de la información de las fuentes en su \textbf{cono de luz pasado}.
+
+\subsection{Ecuaciones de onda inhomogéneas para los potenciales}
+\label{subsec:onda-inhomogenea-potenciales}
+
+Recordemos que, al imponer el gauge de Lorenz,
+\begin{equation*}
+    \vec\nabla\cdot\vec A+\frac{1}{c^2}\frac{\partial\phi}{\partial t}=0,
+\end{equation*}
+las ecuaciones para los potenciales se desacoplan como
+\begin{align}
+    \nabla^2\phi-\frac{1}{c^2}\frac{\partial^2\phi}{\partial t^2}
+    &=-\frac{\rho}{\varepsilon},
+    \label{eq:rad-onda-phi}\\
+    \nabla^2\vec A-\frac{1}{c^2}\frac{\partial^2\vec A}{\partial t^2}
+    &=-\mu\vec J.
+    \label{eq:rad-onda-A}
+\end{align}
+Aquí $\varepsilon$ y $\mu$ son las constantes del medio homogéneo considerado, y $c=1/\sqrt{\varepsilon\mu}$. En vacío se reemplazan por $\varepsilon_0$ y $\mu_0$.
+
+Conviene escribir ambas ecuaciones de manera unificada. Definimos el operador de onda
+\begin{equation}
+    \Box:=\nabla^2-\frac{1}{c^2}\frac{\partial^2}{\partial t^2}.
+    \label{eq:rad-box-def}
+\end{equation}
+Entonces el problema que debemos resolver tiene la forma general
+\begin{equation}
+    \Box\Psi(\vec x,t)=-g(\vec x,t),
+    \label{eq:rad-onda-inhomogenea-general}
+\end{equation}
+donde $\Psi$ representa una componente del potencial escalar o vectorial, y $g$ representa la fuente correspondiente.
+
+\begin{cajaidea}
+\textbf{Idea física.} Las ecuaciones \eqref{eq:rad-onda-phi} y \eqref{eq:rad-onda-A} no son ecuaciones de Poisson instantáneas, sino ecuaciones de onda con fuente. Por tanto, la solución debe recordar que la información electromagnética se propaga con rapidez finita $c$.
+\end{cajaidea}
+
+\subsection{Reducción temporal a una ecuación de Helmholtz}
+\label{subsec:helmholtz-green-retardados}
+
+Para resolver \eqref{eq:rad-onda-inhomogenea-general}, introducimos la transformada de Fourier temporal
+\begin{equation}
+    \widetilde{\Psi}(\vec x,\omega):=
+    \int_{-\infty}^{\infty}\Psi(\vec x,t)\,\ee^{-\ii\omega t}\,dt,
+    \label{eq:rad-fourier-psi}
+\end{equation}
+\begin{equation}
+    \widetilde g(\vec x,\omega):=
+    \int_{-\infty}^{\infty}g(\vec x,t)\,\ee^{-\ii\omega t}\,dt.
+    \label{eq:rad-fourier-g}
+\end{equation}
+La transformada inversa queda dada por
+\begin{equation}
+    \Psi(\vec x,t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}
+    \widetilde\Psi(\vec x,\omega)\,\ee^{\ii\omega t}\,d\omega,
+    \qquad
+    g(\vec x,t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}
+    \widetilde g(\vec x,\omega)\,\ee^{\ii\omega t}\,d\omega.
+    \label{eq:rad-fourier-inversa}
+\end{equation}
+Al transformar la ecuación de onda, la derivada temporal de segundo orden produce un factor $-\omega^2$. Por tanto,
+\begin{equation*}
+    \mathcal F_t\left[\frac{\partial^2\Psi}{\partial t^2}\right]
+    =-\omega^2\widetilde\Psi,
+\end{equation*}
+y \eqref{eq:rad-onda-inhomogenea-general} se convierte en
+\begin{equation}
+    \left(\nabla^2+k^2\right)\widetilde\Psi(\vec x,\omega)
+    =-\widetilde g(\vec x,\omega),
+    \qquad
+    k:=\frac{\omega}{c}.
+    \label{eq:rad-helmholtz-inhomogenea}
+\end{equation}
+Esta es una ecuación de Helmholtz inhomogénea para cada frecuencia $\omega$.
+
+\subsection{Función de Green independiente del tiempo}
+\label{subsec:green-helmholtz-retardada}
+
+Para resolver \eqref{eq:rad-helmholtz-inhomogenea}, buscamos una función de Green $G(\vec x,\vec x')$ que satisfaga
+\begin{equation}
+    \left(\nabla^2+k^2\right)G(\vec x,\vec x')
+    =-\delta^{(3)}(\vec x-\vec x').
+    \label{eq:rad-green-helmholtz}
+\end{equation}
+Con esta convención, una solución particular queda escrita como
+\begin{equation}
+    \widetilde\Psi(\vec x,\omega)=
+    \int G(\vec x,\vec x')\,\widetilde g(\vec x',\omega)\,dV'.
+    \label{eq:rad-solucion-green-frecuencia}
+\end{equation}
+La solución esférica saliente o entrante de \eqref{eq:rad-green-helmholtz} es
+\begin{equation}
+    G_{\pm}(\vec x,\vec x')=
+    \frac{\ee^{\pm \ii k |\vec x-\vec x'|}}{4\pi |\vec x-\vec x'|}.
+    \label{eq:rad-green-pm}
+\end{equation}
+Por tanto,
+\begin{equation}
+    \widetilde\Psi_{\pm}(\vec x,\omega)=
+    \frac{1}{4\pi}\int
+    \frac{\widetilde g(\vec x',\omega)\,\ee^{\pm \ii k |\vec x-\vec x'|}}
+    {|\vec x-\vec x'|}\,dV'.
+    \label{eq:rad-psi-frecuencia-pm}
+\end{equation}
+Al volver al dominio temporal, obtenemos
+\begin{equation}
+    \Psi_{\pm}(\vec x,t)=
+    \frac{1}{4\pi}\int
+    \frac{g(\vec x',t_{\pm})}{|\vec x-\vec x'|}\,dV',
+    \label{eq:rad-solucion-pm-temporal}
+\end{equation}
+donde
+\begin{equation}
+    t_{\pm}:=t\pm\frac{|\vec x-\vec x'|}{c}.
+    \label{eq:rad-tiempo-pm}
+\end{equation}
+La solución con $t_-=t-|\vec x-\vec x'|/c$ es la solución \textbf{retardada}; la solución con $t_+=t+|\vec x-\vec x'|/c$ es la solución \textbf{avanzada}.
+
+\begin{cuidado}
+La solución avanzada no es matemáticamente inválida; lo que ocurre es que no representa la elección causal usual. Para predecir los campos a partir de fuentes dadas, se escoge la solución retardada, porque sólo usa información situada en el pasado causal del evento de observación.
+\end{cuidado}
+
+\subsection{Potenciales retardados}
+\label{subsec:potenciales-retardados}
+
+Aplicando \eqref{eq:rad-solucion-pm-temporal} a las ecuaciones \eqref{eq:rad-onda-phi} y \eqref{eq:rad-onda-A}, los potenciales retardados quedan
+\begin{equation}
+    \boxed{
+    \phi_{\mathrm{ret}}(\vec x,t)=
+    \frac{1}{4\pi\varepsilon}\int
+    \frac{\rho(\vec x',t_{\mathrm{ret}})}{|\vec x-\vec x'|}\,dV'
+    }
+    \label{eq:rad-potencial-escalar-retardado}
+\end{equation}
+\begin{equation}
+    \boxed{
+    \vec A_{\mathrm{ret}}(\vec x,t)=
+    \frac{\mu}{4\pi}\int
+    \frac{\vec J(\vec x',t_{\mathrm{ret}})}{|\vec x-\vec x'|}\,dV'
+    }
+    \label{eq:rad-potencial-vectorial-retardado}
+\end{equation}
+con
+\begin{equation}
+    \boxed{
+    t_{\mathrm{ret}}(\vec x,\vec x',t)=
+    t-\frac{|\vec x-\vec x'|}{c}.
+    }
+    \label{eq:rad-tiempo-retardado-distribucion}
+\end{equation}
+Estas expresiones son formalmente parecidas a los potenciales electrostático y magnetostático, pero con una diferencia esencial: las fuentes no se evalúan en $t$, sino en el tiempo retardado $t_{\mathrm{ret}}$.
+
+La condición \eqref{eq:rad-tiempo-retardado-distribucion} puede escribirse como
+\begin{equation}
+    c^2(t-t_{\mathrm{ret}})^2-|\vec x-\vec x'|^2=0.
+    \label{eq:rad-relacion-tipo-luz-distribucion}
+\end{equation}
+Por tanto, el evento fuente $(ct_{\mathrm{ret}},\vec x')$ y el evento de observación $(ct,\vec x)$ están conectados por una señal luminosa.
+
+\begin{figure}[ht!]
+\centering
+\begin{tikzpicture}[scale=0.95]
+    \draw[eje] (-0.2,0) -- (7.1,0) node[right] {$x$};
+    \draw[eje] (0,-0.2) -- (0,4.7) node[above] {$ct$};
+
+    \coordinate (O) at (4.8,3.7);
+    \coordinate (S) at (2.2,1.1);
+
+    \draw[UdeCAzul, thick] (O) -- (2.5,1.4);
+    \draw[UdeCAzul, thick] (O) -- (7.0,1.5);
+    \draw[UdeCAzul!45, dashed] (O) -- (3.3,0.2);
+    \draw[UdeCAzul!45, dashed] (O) -- (6.3,0.2);
+
+    \fill[UdeCDorado] (O) circle (2.2pt) node[above right] {$(ct,\vec x)$};
+    \fill[UdeCAzul] (S) circle (2.2pt) node[below left] {$(ct_{\mathrm{ret}},\vec x')$};
+    \draw[-{Latex}, thick, UdeCDorado] (S) -- node[above, sloped] {señal a rapidez $c$} (O);
+
+    \node[align=center, text=UdeCAzul] at (5.85,2.1) {cono de luz\ pasado};
+\end{tikzpicture}
+\caption{Interpretación causal de los potenciales retardados: el evento fuente debe estar sobre el cono de luz pasado del evento de observación.}
+\label{fig:rad-cono-luz-retardado}
+\end{figure}
+
+\begin{cajaidea}
+\textbf{Lectura física.} Los potenciales retardados permiten predecir el campo en $(\vec x,t)$ conociendo las fuentes en tiempos anteriores. Un cambio en una distribución de carga o corriente no se transmite instantáneamente: su efecto llega después de un tiempo de vuelo $|\vec x-\vec x'|/c$.
+\end{cajaidea}
+
+\subsection{Ecuaciones de Jefimenko}
+\label{subsec:ecuaciones-jefimenko}
+
+A partir de los potenciales retardados se obtienen los campos mediante
+\begin{equation*}
+    \E=-\vec\nabla\phi-\frac{\partial\vec A}{\partial t},
+    \qquad
+    \B=\vec\nabla\times\vec A.
+\end{equation*}
+Al realizar cuidadosamente las derivadas, recordando que $t_{\mathrm{ret}}$ depende de $\vec x$, se llega a las \textbf{ecuaciones de Jefimenko}:
+\begin{equation}
+    \boxed{
+    \E(\vec x,t)=\frac{1}{4\pi\varepsilon}\int
+    \left[
+    \frac{\rho(\vec x',t_{\mathrm{ret}})(\vec x-\vec x')}{|\vec x-\vec x'|^3}
+    +\frac{1}{c}\frac{\dot\rho(\vec x',t_{\mathrm{ret}})(\vec x-\vec x')}{|\vec x-\vec x'|^2}
+    -\frac{1}{c^2}\frac{\dot{\vec J}(\vec x',t_{\mathrm{ret}})}{|\vec x-\vec x'|}
+    \right]dV'
+    }
+    \label{eq:rad-jefimenko-E}
+\end{equation}
+\begin{equation}
+    \boxed{
+    \B(\vec x,t)=\frac{\mu}{4\pi}\int
+    \left[
+    \frac{\vec J(\vec x',t_{\mathrm{ret}})\times(\vec x-\vec x')}{|\vec x-\vec x'|^3}
+    +\frac{1}{c}\frac{\dot{\vec J}(\vec x',t_{\mathrm{ret}})\times(\vec x-\vec x')}{|\vec x-\vec x'|^2}
+    \right]dV'
+    }
+    \label{eq:rad-jefimenko-B}
+\end{equation}
+Aquí el punto denota derivada parcial respecto de la variable temporal de la fuente; por ejemplo,
+\begin{equation*}
+    \dot\rho(\vec x',t_{\mathrm{ret}})=
+    \left.\frac{\partial\rho(\vec x',\tau)}{\partial\tau}\right|_{\tau=t_{\mathrm{ret}}}.
+\end{equation*}
+
+Las ecuaciones de Jefimenko son una versión explícitamente causal de los campos. Si las fuentes son estacionarias, entonces $\dot\rho=0$ y $\dot{\vec J}=\vec 0$, recuperándose las expresiones estáticas usuales. En cambio, cuando las fuentes varían en el tiempo, aparecen términos adicionales que dependen de la variación temporal de la carga y de la corriente.
+
+\subsection{Potenciales de Liénard--Wiechert}
+\label{subsec:potenciales-lienard-wiechert}
+
+Los \textbf{potenciales de Liénard--Wiechert} son los potenciales retardados producidos por una carga puntual $q$ que se mueve siguiendo una trayectoria conocida $\vec z(t)$. Es decir, ahora la fuente no está distribuida en el volumen, sino concentrada sobre la línea de mundo de la partícula.
+
+Las densidades de carga y corriente asociadas a una carga puntual en movimiento son
+\begin{equation}
+    \rho(\vec x,t)=q\delta^{(3)}(\vec x-\vec z(t)),
+    \qquad
+    \vec J(\vec x,t)=q\vec v(t)\delta^{(3)}(\vec x-\vec z(t)),
+    \label{eq:rad-densidades-carga-puntual}
+\end{equation}
+donde
+\begin{equation*}
+    \vec v(t)=\frac{d\vec z}{dt}.
+\end{equation*}
+Al reemplazar \eqref{eq:rad-densidades-carga-puntual} en \eqref{eq:rad-potencial-escalar-retardado} y \eqref{eq:rad-potencial-vectorial-retardado}, se obtiene
+\begin{equation}
+    \phi_{\mathrm{ret}}(\vec x,t)=
+    \frac{q}{4\pi\varepsilon}\int
+    \frac{\delta^{(3)}\!\bigl(\vec x'-\vec z(t-|\vec x-\vec x'|/c)\bigr)}{|\vec x-\vec x'|}\,d^3x',
+    \label{eq:rad-lw-phi-integral-inicial}
+\end{equation}
+\begin{equation}
+    \vec A_{\mathrm{ret}}(\vec x,t)=
+    \frac{q\mu}{4\pi}\int
+    \frac{\vec v(t-|\vec x-\vec x'|/c)\,
+    \delta^{(3)}\!\bigl(\vec x'-\vec z(t-|\vec x-\vec x'|/c)\bigr)}{|\vec x-\vec x'|}\,d^3x'.
+    \label{eq:rad-lw-A-integral-inicial}
+\end{equation}
+La dificultad está en que la delta de Dirac contiene a $\vec x'$ tanto de manera explícita como dentro del tiempo retardado. Para aislar correctamente la contribución de la trayectoria, consideramos una integral genérica de la forma
+\begin{equation}
+    I(\vec x,t)=\int
+    f(\vec x,\vec x',t)\,
+    \delta^{(3)}\!\bigl(\vec x'-\vec z(t-|\vec x-\vec x'|/c)\bigr)\,d^3x'.
+    \label{eq:rad-lw-integral-generica}
+\end{equation}
+Introducimos una variable temporal auxiliar $T$ y escribimos
+\begin{equation}
+    \delta^{(3)}\!\bigl(\vec x'-\vec z(t-|\vec x-\vec x'|/c)\bigr)
+    =\int_{-\infty}^{\infty}
+    \delta^{(3)}(\vec x'-\vec z(T))
+    \delta\!\bigl(T-t+|\vec x-\vec x'|/c\bigr)\,dT.
+    \label{eq:rad-lw-delta-auxiliar}
+\end{equation}
+Entonces
+\begin{align}
+    I(\vec x,t)
+    &=\int_{-\infty}^{\infty}\int
+    f(\vec x,\vec x',t)\,
+    \delta^{(3)}(\vec x'-\vec z(T))
+    \delta\!\bigl(T-t+|\vec x-\vec x'|/c\bigr)
+    \,d^3x'\,dT \\
+    &=\int_{-\infty}^{\infty}
+    f(\vec x,\vec z(T),t)\,
+    \delta\!\bigl(T-t+|\vec x-\vec z(T)|/c\bigr)\,dT.
+    \label{eq:rad-lw-integral-sobre-T}
+\end{align}
+Definimos
+\begin{equation}
+    g(T):=T-t+\frac{1}{c}|\vec x-\vec z(T)|.
+    \label{eq:rad-lw-gT}
+\end{equation}
+El tiempo retardado $t'$ queda determinado por la raíz de $g$, es decir,
+\begin{equation}
+    \boxed{
+    t'=t-\frac{|\vec x-\vec z(t')|}{c}.
+    }
+    \label{eq:rad-lw-tiempo-retardado}
+\end{equation}
+Esta es una ecuación implícita: para conocer el tiempo retardado hay que encontrar el punto de la trayectoria de la carga que se conecta causalmente con el evento de observación.
+
+Usando la identidad de la delta de Dirac
+\begin{equation*}
+    \delta(g(T))=\sum_i\frac{\delta(T-T_i)}{|g'(T_i)|},
+\end{equation*}
+y suponiendo movimiento subluminal, de modo que existe una única raíz retardada relevante, se tiene
+\begin{equation}
+    I(\vec x,t)=
+    \frac{f(\vec x,\vec z(t'),t)}{|g'(t')|}.
+    \label{eq:rad-lw-I-con-gprima}
+\end{equation}
+Calculemos ahora $g'(T)$. Por regla de la cadena,
+\begin{align}
+    g'(T)
+    &=1+\frac{1}{c}\frac{d}{dT}|\vec x-\vec z(T)| \\
+    &=1+\frac{1}{c}\frac{\vec x-\vec z(T)}{|\vec x-\vec z(T)|}\cdot\frac{d}{dT}(\vec x-\vec z(T)) \\
+    &=1-\frac{1}{c}\frac{\vec v(T)\cdot(\vec x-\vec z(T))}{|\vec x-\vec z(T)|}.
+    \label{eq:rad-lw-gprima-calculo}
+\end{align}
+Definimos, evaluado en el tiempo retardado,
+\begin{equation}
+    \vec{\mathcal R}:=\vec x-\vec z(t'),
+    \qquad
+    \mathcal R:=|\vec x-\vec z(t')|,
+    \qquad
+    \hat n:=\frac{\vec{\mathcal R}}{\mathcal R},
+    \qquad
+    \vec\beta:=\frac{\vec v(t')}{c}.
+    \label{eq:rad-lw-definiciones-retardadas}
+\end{equation}
+Con esta notación,
+\begin{equation}
+    g'(t')=1-\vec\beta\cdot\hat n.
+    \label{eq:rad-lw-gprima-final}
+\end{equation}
+Como $|\vec\beta|<1$, se tiene $g'(t')>0$ para la raíz retardada, y por tanto
+\begin{equation}
+    I(\vec x,t)=
+    \frac{f(\vec x,\vec z(t'),t)}{1-\vec\beta\cdot\hat n}.
+    \label{eq:rad-lw-I-final}
+\end{equation}
+
+Aplicando este resultado a \eqref{eq:rad-lw-phi-integral-inicial} y \eqref{eq:rad-lw-A-integral-inicial}, obtenemos finalmente
+\begin{equation}
+    \boxed{
+    \phi_{\mathrm{LW}}(\vec x,t)=
+    \frac{q}{4\pi\varepsilon}
+    \left.\frac{1}{\mathcal R(1-\vec\beta\cdot\hat n)}\right|_{\mathrm{ret}}
+    }
+    \label{eq:rad-lw-phi-final}
+\end{equation}
+\begin{equation}
+    \boxed{
+    \vec A_{\mathrm{LW}}(\vec x,t)=
+    \frac{\mu c q}{4\pi}
+    \left.\frac{\vec\beta}{\mathcal R(1-\vec\beta\cdot\hat n)}\right|_{\mathrm{ret}}
+    }
+    \label{eq:rad-lw-A-final}
+\end{equation}
+Estas son las expresiones de los potenciales de Liénard--Wiechert.
+
+\begin{cajaidea}
+\textbf{Resumen conceptual.} Para una carga puntual en movimiento arbitrario, los potenciales en $(\vec x,t)$ dependen de la posición y velocidad de la carga en el único instante retardado $t'$ que satisface \eqref{eq:rad-lw-tiempo-retardado}. La expresión no sólo contiene la distancia retardada $\mathcal R$, sino también el factor cinemático $1-\vec\beta\cdot\hat n$, que proviene del cambio de variable dentro de la delta de Dirac.
+\end{cajaidea}
+
+Además, usando $c^{-2}=\varepsilon\mu$, las expresiones \eqref{eq:rad-lw-phi-final} y \eqref{eq:rad-lw-A-final} implican la relación
+\begin{equation}
+    \boxed{
+    \vec A_{\mathrm{LW}}(\vec x,t)=
+    \frac{\phi_{\mathrm{LW}}(\vec x,t)}{c}\left.\vec\beta\right|_{\mathrm{ret}}
+    =\frac{\phi_{\mathrm{LW}}(\vec x,t)}{c^2}\left.\vec v\right|_{\mathrm{ret}}.
+    }
+    \label{eq:rad-lw-relacion-A-phi}
+\end{equation}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.95]
+    \draw[eje] (-0.2,0) -- (7.3,0) node[right] {$x$};
+    \draw[eje] (0,-0.2) -- (0,4.8) node[above] {$ct$};
+
+    \draw[UdeCAzul, very thick, domain=0.6:4.0, smooth, variable=\s]
+        plot ({1.4+0.9*\s+0.25*sin(90*\s)}, {0.45+\s});
+
+    \coordinate (P) at (5.6,4.0);
+    \coordinate (Q) at (3.1,2.05);
+
+    \fill[UdeCDorado] (P) circle (2.2pt) node[above right] {$(ct,\vec x)$};
+    \fill[UdeCAzul] (Q) circle (2.2pt) node[below left] {$(ct',\vec z(t'))$};
+
+    \draw[UdeCAzul!55, dashed, thick] (P) -- (3.2,1.6);
+    \draw[UdeCAzul!55, dashed, thick] (P) -- (7.2,1.6);
+    \draw[-{Latex}, thick, UdeCDorado] (Q) -- node[above, sloped] {$\mathcal R=c(t-t')$} (P);
+
+    \node[align=center, text=UdeCAzul] at (2.35,4.35) {línea de mundo\ de la carga};
+    \node[align=center, text=UdeCAzul] at (6.35,2.25) {cono de luz\ pasado};
+\end{tikzpicture}
+\caption{El tiempo retardado $t'$ se obtiene como la intersección entre la línea de mundo de la carga y el cono de luz pasado del evento de observación.}
+\label{fig:rad-lienard-wiechert-retardo}
+\end{figure}
+
 
 
 \section{Electrodinámica en medios materiales}

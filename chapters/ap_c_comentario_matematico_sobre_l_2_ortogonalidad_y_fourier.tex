@@ -1,0 +1,65 @@
+% !TeX root = ../main.tex
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\chapter[Comentario matemático sobre L2, ortogonalidad y Fourier]{Comentario matemático sobre $L^2$, ortogonalidad y Fourier}
+\label{ap:l2-fourier}
+
+En la subsección sobre superposición general de ondas planas monocromáticas se utilizó la transformada de Fourier espacial para descomponer el campo en modos elementales. Conviene dejar aquí una breve justificación matemática de ese procedimiento.
+
+Una forma natural de idealizar un campo físico regular consiste en suponer que, para cada instante $t$ fijo, sus componentes espaciales son funciones cuadrado integrables. Es decir, si
+\begin{equation*}
+    \vec E(\vec x,t)=E^1(\vec x,t)\,\hat e_x+E^2(\vec x,t)\,\hat e_y+E^3(\vec x,t)\,\hat e_z,
+\end{equation*}
+se supone que
+\begin{equation*}
+    E^i(\cdot,t)\in L^2(\mathbb R^3),\qquad i=1,2,3.
+\end{equation*}
+En forma abreviada, esto se expresa diciendo que
+\begin{equation*}
+    \vec E(\cdot,t)\in L^2(\mathbb R^3).
+\end{equation*}
+La condición correspondiente es
+\begin{equation*}
+    \int_{\mathbb R^3}|\vec E(\vec x,t)|^2\,d^3x<\infty.
+\end{equation*}
+
+El lenguaje apropiado para discutir este tipo de objetos es el de espacios con producto interno y, más específicamente, el de espacios de Hilbert. En particular, para funciones complejas cuadrado integrables en un intervalo, el producto interno usual es
+\begin{equation*}
+    \langle f,g\rangle=\int_a^b f(x)\,g^*(x)\,dx,
+\end{equation*}
+y la norma inducida por él es
+\begin{equation*}
+    \|f\|=\langle f,f\rangle^{1/2}.
+\end{equation*}
+En el caso periódico, un espacio especialmente importante es $L^2[0,2\pi]$, con producto interno
+\begin{equation*}
+    \langle f,g\rangle=\frac{1}{2\pi}\int_0^{2\pi} f(t)\,g^*(t)\,dt.
+\end{equation*}
+En este espacio, las funciones
+\begin{equation*}
+    e_n(t)=\ee^{\ii nt},\qquad n\in\mathbb Z,
+\end{equation*}
+forman un sistema ortonormal. Más aún, constituyen una base ortonormal en $L^2[0,2\pi]$. Por eso, toda función $f\in L^2[0,2\pi]$ admite un desarrollo de Fourier de la forma
+\begin{equation*}
+    f(t)=\sum_{n\in\mathbb Z} c_n\,\ee^{\ii nt},
+\end{equation*}
+en el sentido de convergencia en norma $L^2$, donde
+\begin{equation*}
+    c_n=\frac{1}{2\pi}\int_0^{2\pi} f(t)\,\ee^{-\ii nt}\,dt.
+\end{equation*}
+Además, se verifica la identidad de Parseval,
+\begin{equation*}
+    \|f\|_{L^2}^2=\sum_{n\in\mathbb Z}|c_n|^2.
+\end{equation*}
+
+La idea física que usamos en el cuerpo del apunte es una versión continua de este mismo mecanismo. En una caja finita aparecen series de Fourier discretas; cuando el volumen crece y se pasa al límite continuo, la suma sobre modos discretos se transforma en una integral sobre vectores de onda $\vec k$. Precisamente de ahí surge la escritura
+\begin{equation*}
+    \vec E(\vec x,t)=\int_{\mathbb R^3}\vec E_k(\vec k,t)\,\ee^{\ii\vec k\cdot\vec x}\,d^3k.
+\end{equation*}
+
+Conviene, eso sí, hacer una precisión importante. Las ondas planas puras $\ee^{\ii\vec k\cdot\vec x}$ no pertenecen estrictamente a $L^2(\mathbb R^3)$, pues no son cuadrado integrables en todo el espacio. Por eso, desde un punto de vista completamente riguroso, deben interpretarse como modos espectrales generalizados. Sin embargo, la intuición geométrica y algebraica sigue siendo la misma: se trata de descomponer el campo en componentes ortogonales elementales y luego reconstruirlo mediante una combinación lineal continua.
+
+En ese sentido, la superposición continua de ondas planas monocromáticas no es una maniobra puramente formal, sino la extensión natural del lenguaje de bases ortogonales, series de Fourier y espacios de Hilbert al contexto espectral continuo que aparece en electrodinámica.
+
+\end{document}

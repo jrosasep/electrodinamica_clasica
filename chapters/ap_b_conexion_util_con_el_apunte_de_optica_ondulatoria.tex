@@ -1,0 +1,56 @@
+% !TeX root = ../main.tex
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\chapter{Conexión útil con el apunte de óptica ondulatoria}
+\label{ap:optica-ondulatoria}
+
+Del apunte de óptica ondulatoria interesa, en este punto, rescatar sólo la estructura mínima que resulta útil para interpretar las ecuaciones de onda electromagnéticas. Allí la luz se modela inicialmente mediante una función escalar de onda en un medio homogéneo, lo que permite discutir propagación, superposición, ondas monocromáticas, ecuación de Helmholtz y frentes de onda. El mismo formalismo, sin embargo, deja en evidencia su limitación: no describe adecuadamente fenómenos intrínsecamente vectoriales, como la polarización, ni reemplaza las condiciones de borde propias del electromagnetismo.
+
+En ese lenguaje escalar, una onda homogénea satisface una ecuación de la forma
+\begin{equation*}
+    \nabla^2 u(\vec r,t)-\frac{1}{c^2}\frac{\partial^2 u(\vec r,t)}{\partial t^2}=0,
+\end{equation*}
+lo cual es análogo a la ecuación de onda sin fuentes obtenida para las componentes cartesianas de los campos electromagnéticos en el vacío. Además, por tratarse de una ecuación lineal, satisface el principio de superposición: si $u_1$ y $u_2$ son soluciones, entonces $u=u_1+u_2$ también lo es. Este hecho es plenamente consistente con la linealidad del sistema de Maxwell en el régimen considerado.
+
+En el mismo contexto, la noción de onda monocromática se introduce mediante una expresión armónica del tipo
+\begin{equation*}
+    u(\vec r,t)=a(\vec r)\cos\left(\omega t+\phi(\vec r)\right),
+\end{equation*}
+donde $a(\vec r)$ es la amplitud espacial, $\phi(\vec r)$ la fase espacial y $\omega=2\pi\nu$ la frecuencia angular. Esta forma es útil porque el ansatz electromagnético estudiado antes responde exactamente a la misma estructura, salvo que la función escalar $u$ se reemplaza por los campos vectoriales $\E$ y $\B$.
+
+Luego, para simplificar cálculos, el apunte introduce la representación compleja
+\begin{equation*}
+    U(\vec r,t)=U(\vec r)\,\ee^{\ii\omega t},
+\end{equation*}
+con
+\begin{equation*}
+    u(\vec r,t)=\operatorname{Re}\left\{U(\vec r,t)\right\}.
+\end{equation*}
+Al sustituir este ansatz temporal armónico en la ecuación de onda, la dependencia temporal se separa y aparece la ecuación de Helmholtz,
+\begin{equation*}
+    (\nabla^2+k^2)U(\vec r)=0,
+\end{equation*}
+donde
+\begin{equation*}
+    k=\frac{\omega}{c}=\frac{2\pi}{\lambda}.
+\end{equation*}
+Esta observación es útil porque, al pasar al régimen armónico temporal, las ecuaciones de Maxwell suelen reescribirse también en términos de amplitudes complejas y problemas de tipo Helmholtz.
+
+Otro aspecto importante es la interpretación geométrica de la fase. En el apunte de óptica, los frentes de onda se definen como las superficies de fase constante,
+\begin{equation*}
+    \phi(\vec r)=\text{cte},
+\end{equation*}
+y la normal a dichos frentes es paralela a $\vec\nabla\phi$. Para ondas planas, la amplitud compleja toma la forma
+\begin{equation*}
+    U(\vec r)=A\,\ee^{-\ii\vec k\cdot\vec r},
+\end{equation*}
+de modo que los frentes de onda son planos perpendiculares al vector $\vec k$, y la longitud de onda resulta ser
+\begin{equation*}
+    \lambda=\frac{2\pi}{k}.
+\end{equation*}
+Esta interpretación coincide con la usada en el caso electromagnético: el vector $\vec k$ fija la dirección de propagación y la fase $\vec k\cdot\vec r-\omega t+\varphi_0$ determina la estructura espacio-temporal de la onda.
+
+En síntesis, de ese apunte interesa retener la ecuación de onda escalar como modelo de propagación, el principio de superposición, la forma armónica de las ondas monocromáticas, la representación compleja, la reducción a Helmholtz y la interpretación geométrica de los frentes de onda. La polarización, en cambio, exige volver al carácter vectorial de $\E$ y $\B$.
+
+\end{document}

@@ -1,0 +1,274 @@
+% !TeX root = ../main.tex
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\chapter{Estructura local de la electrodinámica clásica}
+
+\section{Sistemas de unidades}
+
+En electrodinámica aparecen con frecuencia dos sistemas de unidades: el \textbf{Sistema Internacional} y el \textbf{sistema gaussiano}. En este último, los campos $\vec E$ y $\vec B$ poseen las mismas unidades, lo que hace más transparente su tratamiento conjunto en muchos desarrollos teóricos. En particular, la carga deja de tomarse como unidad fundamental y pasa a tener dimensión derivada:
+\begin{equation*}
+    [q]= M^{\frac{1}{2}} L^{\frac{3}{2}}T^{-1}.
+\end{equation*}
+Por esta razón, el sistema gaussiano sigue siendo habitual en física teórica y en varios textos clásicos de electromagnetismo.
+
+
+\section{Conservación local de la carga}
+
+\textbf{La conservación local de la carga} constituye una condición de consistencia básica de la teoría electromagnética. Su forma diferencial es
+\begin{equation}
+    \frac{\partial \rho}{\partial t}+\vec\nabla\cdot\vec J = 0,
+    \label{eq:continuidad-local-carga}
+\end{equation}
+y, en forma integral,
+\begin{equation*}
+    \frac{\partial}{\partial t}\left(\int_V \rho\, dV\right)+\int_{\partial V}\vec J\cdot d\vec S=0.
+\end{equation*}
+La ecuación \eqref{eq:continuidad-local-carga} expresa que la variación temporal de la carga contenida en un volumen sólo puede originarse en el flujo de corriente a través de su frontera.
+
+Es útil comparar esta ecuación con la forma general de una ley local de balance en mecánica de fluidos:
+\begin{equation*}
+    \frac{\partial}{\partial t}(\rho_m C)+\vec\nabla\cdot(\vec u\,\rho_m C)=Q_C,
+\end{equation*}
+donde $\rho_m$ es una densidad de masa, $C$ una magnitud intensiva transportada por el flujo, $\vec u$ el campo de velocidades y $Q_C$ una fuente local. Si se define
+\begin{equation*}
+    c(\vec x,t)=\rho_m(\vec x,t)\,C(\vec x,t),
+\end{equation*}
+la ecuación anterior adopta la forma
+\begin{equation*}
+    \frac{\partial c}{\partial t}+\vec\nabla\cdot(c\,\vec u)=s.
+\end{equation*}
+
+La ecuación de continuidad de la carga es, entonces, un caso particular de esta estructura general de balance. Basta identificar
+\begin{equation*}
+    c=\rho,
+    \qquad
+    s=0,
+    \qquad
+    \vec J=\rho\,\vec u.
+\end{equation*}
+Con ello se recupera inmediatamente \eqref{eq:continuidad-local-carga}. Desde este punto de vista, la continuidad de la carga no es una ecuación aislada, sino la formulación electromagnética de un principio general de conservación local.
+
+
+\begin{figure}[ht]
+    \centering
+    \begingroup
+    \shorthandoff{<>}
+    \begin{tikzpicture}[scale=0.98,>=Latex,line join=round,line cap=round]
+        \fill[UdeCAzul!5] (-2.35,-0.92) .. controls (-2.75,0.15) and (-1.60,1.28) .. (-0.45,1.34)
+            .. controls (0.85,1.48) and (2.40,0.84) .. (2.55,-0.16)
+            .. controls (2.76,-1.27) and (1.02,-1.55) .. (-0.30,-1.45)
+            .. controls (-1.25,-1.38) and (-2.05,-1.47) .. (-2.35,-0.92) -- cycle;
+        \draw[UdeCAzul!75!black,thick] (-2.35,-0.92) .. controls (-2.75,0.15) and (-1.60,1.28) .. (-0.45,1.34)
+            .. controls (0.85,1.48) and (2.40,0.84) .. (2.55,-0.16)
+            .. controls (2.76,-1.27) and (1.02,-1.55) .. (-0.30,-1.45)
+            .. controls (-1.25,-1.38) and (-2.05,-1.47) .. (-2.35,-0.92) -- cycle;
+        \node[UdeCAzul!85!black] at (-0.12,0.24) {$V$};
+        \node[font=\small,align=center] at (-0.10,-0.33) {$\rho(\vec x,t)$\\carga contenida};
+        \draw[vecdorado] (2.35,0.20) -- (3.35,0.66);
+        \node[font=\small,UdeCDorado!85!black,anchor=west] at (3.55,0.72) {$\vec J\cdot \hat n>0$};
+        \draw[vecdorado] (-2.28,0.46) -- (-3.25,0.74);
+        \node[font=\small,UdeCDorado!85!black,anchor=east] at (-3.45,0.80) {$\vec J\cdot \hat n>0$};
+        \draw[eje] (2.55,0.13) -- (3.07,-0.18);
+        \node[font=\small,anchor=west] at (3.20,-0.20) {$\hat n$};
+        \draw[vecverde] (0.85,-2.02) -- (0.35,-1.48);
+        \node[font=\small,green!45!black,anchor=west,fill=white,inner sep=1pt] at (1.25,-1.80) {$\vec J\cdot \hat n<0$};
+        \node[cajadiagrama, text width=6.4cm] at (0,-3.05)
+        {$\displaystyle \frac{\partial \rho}{\partial t}+\vec\nabla\cdot\vec J=0$\\[2pt]
+        variación local $+$ flujo saliente $=0$};
+    \end{tikzpicture}
+    \endgroup
+    \caption{Lectura local de la ecuación de continuidad. La carga dentro de un volumen cambia sólo si existe flujo neto de corriente a través de su frontera.}
+    \label{fig:continuidad-carga-volumen}
+\end{figure}
+
+
+\begin{cuidado}
+La ecuación de continuidad no afirma que la carga en un volumen fijo permanezca constante en todo instante. Afirma, más precisamente, que cualquier variación de dicha carga debe explicarse por un flujo de corriente a través de la frontera del volumen considerado.
+\end{cuidado}
+
+\section{De la ley de Ampère magnetostática a la ley de Ampère-Maxwell}
+
+La forma dinámica de la ley de Ampère puede motivarse exigiendo compatibilidad con la ecuación de continuidad. En este sentido, el término introducido por Maxwell no aparece como un añadido ad hoc, sino como la modificación necesaria para extender la ley magnetostática al caso general.
+
+Partimos de la ley de Ampère magnetostática,
+\begin{equation}
+    \vec\nabla\times\B=\mu_0\J.
+    \label{eq:ampere-magnetostatica}
+\end{equation}
+Tomando divergencia en ambos lados de \eqref{eq:ampere-magnetostatica}, se obtiene
+\begin{equation*}
+    \vec\nabla\cdot(\vec\nabla\times\B)=\mu_0\vec\nabla\cdot\J.
+\end{equation*}
+Como la divergencia de un rotor es siempre cero, se sigue que
+\begin{equation*}
+    0=\mu_0\vec\nabla\cdot\J,
+\end{equation*}
+y por tanto
+\begin{equation*}
+    \vec\nabla\cdot\J=0.
+\end{equation*}
+Pero, usando la ecuación de continuidad \eqref{eq:continuidad-local-carga}, esta condición implica
+\begin{equation*}
+    \frac{\partial \rho}{\partial t}=0.
+\end{equation*}
+Es decir, la ley de Ampère en su forma puramente magnetostática sólo es compatible con distribuciones de carga estacionarias.
+
+Si se desea una teoría válida cuando la carga y la corriente pueden depender del tiempo, es necesario reemplazar \eqref{eq:ampere-magnetostatica} por una ley más general de la forma
+\begin{equation}
+    \vec\nabla\times\B=\mu_0\J+\vec X,
+    \label{eq:ampere-con-X}
+\end{equation}
+donde $\vec X$ es un término adicional todavía desconocido. Tomando divergencia en \eqref{eq:ampere-con-X}, resulta
+\begin{equation*}
+    0=\mu_0\vec\nabla\cdot\J+\vec\nabla\cdot\vec X.
+\end{equation*}
+Usando nuevamente \eqref{eq:continuidad-local-carga}, esto se reescribe como
+\begin{equation}
+    \vec\nabla\cdot\vec X=\mu_0\frac{\partial \rho}{\partial t}.
+    \label{eq:divX}
+\end{equation}
+
+Ahora bien, por la ley de Gauss eléctrica,
+\begin{equation}
+    \vec\nabla\cdot\E=\frac{\rho}{\varepsilon_0}.
+    \label{eq:gauss-electrica-local}
+\end{equation}
+Derivando \eqref{eq:gauss-electrica-local} respecto del tiempo, se obtiene
+\begin{equation*}
+    \vec\nabla\cdot\frac{\partial \E}{\partial t}=\frac{1}{\varepsilon_0}\frac{\partial \rho}{\partial t}.
+\end{equation*}
+Multiplicando esta ecuación por $\mu_0\varepsilon_0$, se sigue que
+\begin{equation*}
+    \vec\nabla\cdot\left(\mu_0\varepsilon_0\frac{\partial \E}{\partial t}\right)=\mu_0\frac{\partial \rho}{\partial t}.
+\end{equation*}
+Comparando este resultado con \eqref{eq:divX}, una elección natural, local, lineal y mínima para $\vec X$ es
+\begin{equation}
+    \vec X=\mu_0\varepsilon_0\frac{\partial \E}{\partial t}.
+    \label{eq:def-X}
+\end{equation}
+Sustituyendo \eqref{eq:def-X} en \eqref{eq:ampere-con-X}, obtenemos finalmente
+\begin{equation*}
+    \vec\nabla\times\B=\mu_0\J+\mu_0\varepsilon_0\frac{\partial \E}{\partial t}.
+\end{equation*}
+Esta es la ley de Ampère-Maxwell. La llamada \textit{corriente de desplazamiento} queda así determinada por la exigencia de compatibilidad entre la ley de Gauss y la conservación local de la carga.
+
+
+\begin{figure}[ht]
+    \centering
+    \begingroup
+    \shorthandoff{<>}
+    \begin{tikzpicture}[>=Latex, line join=round, line cap=round]
+        \node[cajadiagrama, text width=4.25cm] (amp) at (0,0)
+        {ley magnetostática\\[-1pt]
+        $\vec\nabla\times\B=\mu_0\J$};
+        \node[cajadiagrama, text width=4.85cm] (cont) at (7.0,0)
+        {continuidad de la carga\\[-1pt]
+        $\partial_t\rho+\vec\nabla\cdot\J=0$};
+        \node[cajadiagrama, text width=4.55cm] (gauss) at (7.0,-2.35)
+        {ley de Gauss\\[-1pt]
+        $\vec\nabla\cdot\E=\rho/\varepsilon_0$};
+        \node[cajadiagrama, text width=4.9cm] (max) at (0,-2.35)
+        {corrección dinámica\\[-1pt]
+        $\vec X=\mu_0\varepsilon_0\,\partial_t\E$};
+        \node[cajadiagrama, text width=6.45cm, fill=UdeCDorado!8, draw=UdeCDorado!80!black] (final) at (3.50,-4.70)
+        {$\displaystyle \vec\nabla\times\B=\mu_0\J+\mu_0\varepsilon_0\frac{\partial\E}{\partial t}$\\
+        ley de Amp\`ere-Maxwell};
+        \draw[vecazul] (amp.east) -- node[above=5pt,font=\scriptsize,fill=white,inner sep=1.2pt] {divergencia} (cont.west);
+        \draw[vecazul] (cont.south) -- node[right=5pt,font=\scriptsize,fill=white,inner sep=1.2pt] {usa $\rho$} (gauss.north);
+        \draw[vecazul] (gauss.west) -- node[below=5pt,font=\scriptsize,fill=white,inner sep=1.2pt] {$\partial_t$} (max.east);
+        \draw[vecdorado] (max.south east) -- ++(0.90,-0.75) -- (final.north west);
+        \draw[vecdorado] (amp.south west) -- ++(-1.15,-0.75) -- ++(0,-3.25) -- (final.west);
+    \end{tikzpicture}
+    \endgroup
+    \caption{La corriente de desplazamiento aparece al exigir que la ley de Ampère sea compatible con la conservación local de la carga y con la ley de Gauss.}
+    \label{fig:ampere-maxwell-consistencia}
+\end{figure}
+
+
+\section{Ecuaciones de Maxwell en el vacío}
+
+\textbf{Las ecuaciones de Maxwell constituyen el núcleo local de la electrodinámica clásica}. A partir de ellas se organizan tanto la dinámica de los campos como la propagación de ondas electromagnéticas.
+
+La densidad de fuerza de Lorentz sobre un medio cargado se escribe como
+\begin{equation*}
+    \vec f = \rho\, \E + \J \times \B.
+\end{equation*}
+
+Las ecuaciones homogéneas de Maxwell son
+\begin{align}
+    \vec\nabla\cdot\B&=0,
+    \label{eq:maxwell-gauss-B}\\
+    \vec\nabla\times\E&=-\frac{\partial\B}{\partial t},
+    \label{eq:maxwell-faraday}
+\end{align}
+y las ecuaciones inhomogéneas son
+\begin{align}
+    \vec\nabla\cdot\E&=\frac{\rho}{\varepsilon_0},
+    \label{eq:maxwell-gauss-E}\\
+    \vec\nabla\times\B&=\mu_0\J+\mu_0\varepsilon_0\frac{\partial\E}{\partial t}.
+    \label{eq:maxwell-ampere}
+\end{align}
+
+Conviene subrayar el siguiente punto: la ecuación de continuidad \eqref{eq:continuidad-local-carga} puede deducirse de las ecuaciones inhomogéneas \eqref{eq:maxwell-gauss-E} y \eqref{eq:maxwell-ampere}, pero también puede emplearse como criterio físico para motivar la forma general de la ley de Ampère. No hay contradicción en ello: una vez completada la teoría, la continuidad aparece como condición de consistencia interna del sistema.
+
+Las ecuaciones de Maxwell constituyen un sistema de $8$ ecuaciones escalares para las $6$ componentes escalares de los campos $\E$ y $\B$. En coordenadas cartesianas,
+\begin{align*}
+    \E(\vec x, t) &= E_x\,\hat e_x + E_y \, \hat e_y + E_z \,\hat e_z,\\
+    \B(\vec x, t) &= B_x\,\hat e_x + B_y \, \hat e_y + B_z \,\hat e_z.
+\end{align*}
+Entonces, por ejemplo,
+\begin{equation*}
+    \vec\nabla\cdot\E=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}+\frac{\partial E_z}{\partial z}=\frac{\rho}{\varepsilon_0}
+\end{equation*}
+es una ecuación escalar, y de igual forma
+\begin{equation*}
+    \vec\nabla\cdot\B=\frac{\partial B_x}{\partial x}+\frac{\partial B_y}{\partial y}+\frac{\partial B_z}{\partial z}=0
+\end{equation*}
+es otra ecuación escalar.
+
+En cambio, cada rotor entrega tres ecuaciones escalares. En efecto,
+\begin{equation*}
+    \vec\nabla\times\E=
+    \left(\frac{\partial E_z}{\partial y}-\frac{\partial E_y}{\partial z}\right)\hat e_x+
+    \left(\frac{\partial E_x}{\partial z}-\frac{\partial E_z}{\partial x}\right)\hat e_y+
+    \left(\frac{\partial E_y}{\partial x}-\frac{\partial E_x}{\partial y}\right)\hat e_z,
+\end{equation*}
+de modo que la ley de Faraday \eqref{eq:maxwell-faraday} equivale a las tres ecuaciones
+\begin{align*}
+    \frac{\partial E_z}{\partial y}-\frac{\partial E_y}{\partial z} &= -\frac{\partial B_x}{\partial t},\\
+    \frac{\partial E_x}{\partial z}-\frac{\partial E_z}{\partial x} &= -\frac{\partial B_y}{\partial t},\\
+    \frac{\partial E_y}{\partial x}-\frac{\partial E_x}{\partial y} &= -\frac{\partial B_z}{\partial t}.
+\end{align*}
+Análogamente, la ley de Ampère-Maxwell \eqref{eq:maxwell-ampere} equivale a
+\begin{align*}
+    \frac{\partial B_z}{\partial y}-\frac{\partial B_y}{\partial z} &= \mu_0 J_x+\mu_0\varepsilon_0\frac{\partial E_x}{\partial t},\\
+    \frac{\partial B_x}{\partial z}-\frac{\partial B_z}{\partial x} &= \mu_0 J_y+\mu_0\varepsilon_0\frac{\partial E_y}{\partial t},\\
+    \frac{\partial B_y}{\partial x}-\frac{\partial B_x}{\partial y} &= \mu_0 J_z+\mu_0\varepsilon_0\frac{\partial E_z}{\partial t}.
+\end{align*}
+Por consiguiente,
+\begin{equation*}
+    1+1+3+3=8,
+\end{equation*}
+esto es, \textbf{ocho ecuaciones escalares de primer orden}.
+
+Las ecuaciones de Maxwell forman un sistema lineal acoplado. Más precisamente, las ecuaciones homogéneas \eqref{eq:maxwell-gauss-B} y \eqref{eq:maxwell-faraday} son homogéneas en los campos, mientras que las ecuaciones con fuentes \eqref{eq:maxwell-gauss-E} y \eqref{eq:maxwell-ampere} son inhomogéneas cuando $\rho\neq 0$ o $\J\neq 0$. Por eso satisfacen principio de superposición mientras las fuentes también se superpongan linealmente.
+
+Las fuentes del campo eléctrico y del campo magnético aparecen a través de
+\begin{equation*}
+    \J(\vec x,t)=\rho(\vec x,t)\,\vec u(\vec x,t),
+\end{equation*}
+donde $\J$ es la densidad volumétrica de corriente eléctrica, $\rho$ es la densidad volumétrica de carga y $\vec u$ es el campo de velocidad de arrastre de la carga. \textbf{Todos estos campos dependen de la posición $\vec x$ y del tiempo $t$}. 
+
+\section{Sobre la regularidad de los campos y la conmutación de derivadas}
+
+\textbf{Las derivadas sí conmutan con el rotor siempre que los campos sean suficientemente regulares}. En particular,
+\begin{equation}
+    \frac{\partial}{\partial t}(\vec\nabla\times\B)=\vec\nabla\times\frac{\partial\B}{\partial t}.
+    \label{eq:conmutacion-rotor-tiempo}
+\end{equation}
+No se trata de independencia temporal del campo, sino de la conmutación de derivadas parciales bajo hipótesis de regularidad adecuadas.
+
+\newpage
+
+\end{document}
